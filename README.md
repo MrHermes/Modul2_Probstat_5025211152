@@ -126,11 +126,12 @@ Dimana didapatkan output
 
 #### e. Keputusan
 
-###### Diambil keputusan yaitu H0 tidak tolak 
+###### Diambil keputusan yaitu H0 tolak 
 
 #### f. Kesimpulan
 
 ###### Diambil kesimpulan yaitu ada bukti yang cukup untuk mengatakan bahwa μ1 ≠ μ2
+###### atau ada bukti yang cukup untuk mengatakan bahwa rata-rata saham di Bandung berbeda dengan di Bali
 
 ## 4. (Anova satu arah) Seorang Peneliti sedang meneliti spesies dari kucing di ITS . Dalam penelitiannya ia mengumpulkan data  tiga spesies kucing yaitu kucing oren, kucing hitam dan kucing putih dengan panjangnya masing-masing. 
 ### Jika : 
