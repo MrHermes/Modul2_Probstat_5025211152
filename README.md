@@ -101,7 +101,7 @@ Digunakan distribusi t yang memenuhi informasi yang diberikan, lalu kita gambark
 ```R
 install.packages("mosaic")
 library(mosaic)
-plotDist(dist = 't', df = 2, col = "red")
+plotDist(dist = 't', df = 2)
 ```
 
 Didapatkan output sebagai berikut,
@@ -212,7 +212,7 @@ FOTOOOOOO !!!!!!!!
 install.packages("ggplot2")
 library("ggplot2")
 
-ggplot(dataoneway, aes(x = Group, y = Length)) + geom_boxplot(fill = "blue", colour = "black") + scale_x_discrete() + xlab("Treatment Group") + ylab("Length (cm)")
+ggplot(datano4, aes(x = Group, y = Length)) + geom_boxplot(fill = "blue", colour = "black") + scale_x_discrete() + xlab("Treatment Group") + ylab("Length (cm)")
 
 ```
 
