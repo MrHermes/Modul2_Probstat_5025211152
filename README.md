@@ -142,10 +142,30 @@ Dimana didapatkan output
 
 #### a. Buatlah masing masing jenis spesies menjadi  3 subjek "Grup" (grup 1,grup 2,grup 3). Lalu Gambarkan plot kuantil normal untuk setiap kelompok dan lihat apakah ada outlier utama dalam homogenitas varians.
 
+Dengan diketahui data maka akan kita masukan data yang ada kemudian dilakukan grouping beserta dengan rumus untuk melakukan gambaran plot yang diinginkan
+
 ```R
-x = 2
-v = 10
-dchisq(x, v)
+datano4 <- read.table("data_4.txt", h = T)
+attach(datano4)
+names(datano4)
+
+datano4$Group <- as.factor(datano4$Group)
+datano4$Group = factor(datano4$Group,labels = c("Kucing Oren", "Kucing Hitam", "Kucing Putih"))
+
+class(datano4$Group)
+
+Group1 <- subset(datano4, Group == "Kucing Oren")
+Group2 <- subset(datano4, Group == "Kucing Hitam")
+Group3 <- subset(datano4, Group == "Kucing Putih")
+
+qqnorm(Group1$Length)
+qqline(Group1$Length)
+
+qqnorm(Group2$Length)
+qqline(Group2$Length)
+
+qqnorm(Group3$Length)
+qqline(Group3$Length)
 ```
 Dengan keterangan, `x` adalah data vektor, dan `v` adalah *degree of freedom* 
 
@@ -156,13 +176,10 @@ Dimana didapatkan output
 #### b. carilah atau periksalah Homogeneity of variances nya , Berapa nilai p yang didapatkan? , Apa hipotesis dan kesimpulan yang dapat diambil ?
 
 ```R
-set.seed(100)
-n = 100
-chisquare_data <- rchisq(n, v)
-
-hist(chisquare_data, breaks = 10, main = "Histogram Distribusi Chi-Square dari 100 Data Random")
+bartlett.test(Length ~ Group, data = datano4)
 ```
-Dengan keterangan, `hist()` digunakan untuk membuat histogram dengan `breaks` sebesar 10, sedangkan `rchisq()` digunakan untuk men-*generate* data random
+
+Untuk mendapatkan homogeneity of variances maka dipakai fungsi di atas dengan paramerter dari data
 
 Dimana didapatkan output
 
@@ -171,13 +188,9 @@ Dimana didapatkan output
 #### c. Untuk uji ANOVA, buatlah model linier dengan Panjang versus Grup dan beri nama model tersebut model 1.
 
 ```R
-#nilai rataan
-nilai_rataan <- v; nilai_rataan
-
-#nilai varian
-nilai_varian <- 2*v; nilai_varian
+model1 = lm(Length ~ Group, data = data4)
+anova(model1)
 ```
-Dengan keterangan, `v` adalah *degree of freedom*
 
 Dimana didapatkan output 
 
@@ -185,21 +198,51 @@ Dimana didapatkan output
 
 #### d. Dari Hasil Poin C , Berapakah nilai-p ? ,  Apa yang dapat Anda simpulkan dari H0?
 
+###### Dari hasil yang didapatkan, ditemukan bahwa p-value bernilai 0.0013. Sehingga dapat disimpulkan bahwa terdapat cukup bukti yang menyatakan perbedaan panjang kucing yang signifikan berdasarkan grupnya
+
 #### e. Verifikasilah jawaban model 1 dengan Post-hooc test TukeyHSD ,  dari nilai p yang didapatkan apakah satu jenis kucing lebih panjang dari yang lain? Jelaskan.
 
+```R
+TukeyHSD(aov(model1))
+```
+
+Dari TukeyHSD, didapatkan hasil bahwa perbedaan panjang kucing yang signifikan adalah pada kucing hitam yang terlihat pada hasil memberikan diff cukup besar
+
+Berikut outputnya :
+FOTOOOOOO !!!!!!!!
+
 #### f. Visualisasikan data dengan ggplot2
+
+```R
+install.packages("ggplot2")
+library("ggplot2")
+
+ggplot(dataoneway, aes(x = Group, y = Length)) + geom_boxplot(fill = "blue", colour = "black") + scale_x_discrete() + xlab("Treatment Group") + ylab("Length (cm)")
+
+```
+
+Berikut Outputnya
+FOTOOOOOOOOOOO !!!!
 
 ## 5. (Anova dua arah) 
 ## Data yang digunakan merupakan hasil eksperimen yang dilakukan untuk mengetahui pengaruh suhu operasi (100˚C, 125˚C dan 150˚C) dan tiga jenis kaca pelat muka (A, B dan C) pada keluaran cahaya tabung osiloskop. Percobaan dilakukan sebanyak 27 kali dan didapat data sebagai berikut: Data Hasil Eksperimen. Dengan data tersebut: 
 
 #### a. Buatlah plot sederhana untuk visualisasi data 
 
+Dapat dilakukan pembacaan dataset setelah 
 ```R
-lambda = 3
-set.seed(1)
+install.packages("multcompView")
+library(readr)
+library(ggplot2)
+library(multcompView)
+library(dplyr)
 
-#Misalkan ada 10 data random
-dexp(rexp(10, lambda))
+GTL <- read_csv("data_5.csv")
+head(GTL)
+
+str(GTL)
+
+qplot(x = Temp, y = Light, geom = "point", data = GTL) + facet_grid(.~Glass, labeller = label_both)
 ```
 Dengan keterangan, `lambda` adalah *rate* dari distribusi exponential, dan `rexp()` digunakan untuk men-*generate* data random
 
@@ -210,36 +253,28 @@ Dimana didapatkan output
 #### b. Lakukan uji ANOVA dua arah untuk 2 faktor
 
 ```R
-set.seed(1)
+GTL$Glass <- as.factor(GTL$Glass)
+GTL$Temp_Factor <- as.factor(GTL$Temp)
+str(GTL)
 
-#membuat tampilan 2x2
-par(mfrow=c(2,2))
-
-hist(rexp(10, lambda), main = "Histogram Distribusi Exponensial untuk 10 Bilangan Random")
-hist(rexp(100, lambda), main = "Histogram Distribusi Exponensial untuk 100 Bilangan Random")
-hist(rexp(1000, lambda), main = "Histogram Distribusi Exponensial untuk 1000 Bilangan Random")
-hist(rexp(10000, lambda), main = "Histogram Distribusi Exponensial untuk 10000 Bilangan Random")
+anova <- aov(Light ~ Glass*Temp_Factor, data = GTL)
+summary(anova)
 ```
-Dengan keterangan, `hist()` digunakan untuk membuat histogram, sedangkan `rexp()` digunakan untuk men-*generate* data random
+Dilakukan pengujian anova dengan menggunakan rumus diatas dan didapatkan output terkait
 
-Dimana didapatkan output
+Berikut output di atas
 
 ![5b](https://user-images.githubusercontent.com/90272678/195297501-638ada5d-6429-4476-9ffa-6c0413ffc248.png)
 
 #### c. Tampilkan tabel dengan mean dan standar deviasi keluaran cahaya untuk setiap perlakuan (kombinasi kaca pelat muka dan suhu operasi)
 
 ```R
-set.seed(1)
-n = 100
-lambda = 3
-
-#nilai rataan
-mean(rexp(n, lambda))
-
-#nilai varian
-var(rexp(n, lambda))
+data_summary <- group_by(GTL, Glass, Temp) %>%
+  summarise(mean = mean(Light), sd = sd(Light)) %>%
+  arrange(desc(mean))
+print(data_summary)
 ```
-Dengan keterangan, `mean()` digunakan untuk mendapatkan rataan dari data terkait, sedangkan `var()` digunakan untuk mendapatkan variansi 
+Berikut tabel dari mean dan standar deviasi keluaran cahaya untuk setiap perlakuan
 
 Dimana didapatkan output
 
@@ -247,6 +282,27 @@ Dimana didapatkan output
 
 #### d. Lakukan uji Turkey
 
+```R
+tukey <- TukeyHSD(anova)
+print(tukey)
+```
+
+Didapatkan Output 
+FOTOOOOO~~~~
+
 #### e. Gunakan compact letter display untuk menunjukkan perbedaan signifikan antara uji Anova dan uji Tukey
+
+```R
+tukey.cld <- multcompLetters4(anova, tukey)
+print(tukey.cld)
+
+cld <- as.data.frame.list(tukey.cld$`Glass:Temp_Factor`)
+data_summary$Tukey <- cld$Letters
+print(data_summary)
+
+write.csv("GTL_summary.csv")
+```
+Dimana didapatkan output
+FOTOOOOO
 
 # Sekian, Terima Kasih
