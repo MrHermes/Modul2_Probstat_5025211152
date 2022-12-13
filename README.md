@@ -4,7 +4,7 @@ Oleh Frederick Hidayat 5025211152
 Probabilitas dan Statistika A
 
 ## 1. Seorang peneliti melakukan penelitian mengenai pengaruh aktivitas 𝐴 terhadap kadar saturasi oksigen pada manusia. Peneliti tersebut mengambil sampel sebanyak 9 responden. Pertama, sebelum melakukan aktivitas 𝐴, peneliti mencatat kadar saturasi oksigen dari 9 responden tersebut. Kemudian, 9 responden tersebut diminta melakukan aktivitas 𝐴. Setelah 15 menit, peneliti tersebut mencatat kembali kadar saturasi oksigen dari 9 responden tersebut. Berikut data dari 9 responden mengenai kadar saturasi oksigen sebelum dan sesudah melakukan aktivitas 𝐴 
-FOTOOOOOOOOOOOOOOOOOOOOOOOO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+![soal1](https://user-images.githubusercontent.com/90272678/207414049-bf801586-141e-4108-8fd8-c396551b94c0.png)
 ## Berdasarkan data pada tabel diatas, diketahui kadar saturasi oksigen  dari responden ke-3 ketika belum melakukan aktivitas 𝐴 sebanyak 67, dan setelah melakukan aktivitas 𝐴 sebanyak 70.
 
 #### a. Carilah Standar Deviasi dari data selisih pasangan pengamatan tabel diatas
@@ -70,7 +70,7 @@ Sehingga dapat kita ambil kesimpulan bahwa rata-rata jarak tempuh mobil berada p
 ###### Dari nilai p-value yang ada dan significant level 𝛼 = 0.05 (didapatkan dari 100 % - confidence level ) dapat diputuskan bahwa hipotesis nol ditolak. Setelah itu, dapat disimpulkan bahwa ada cukup bukti yang mendukung klaim bahwa rata-rata mobil dikemudikan adalah lebih dari 20000 kilometer per tahun. 
 
 ## 3. (Hipotesa 2 sampel) Diketahui perusahaan memiliki seorang data analyst ingin memecahkan permasalahan pengambilan keputusan dalam perusahaan tersebut. Selanjutnya didapatkanlah data berikut dari perusahaan saham tersebut.
-FOTOOOOOOOOOOOOOOOOOOOO !!!!!!!!!!!!!!
+![soal3](https://user-images.githubusercontent.com/90272678/207413924-0e3e8acd-8697-4c33-b822-0e3b828e0877.png)
 ## Dari data diatas berilah keputusan serta kesimpulan yang didapatkan dari hasil diatas. Asumsikan nilai variancenya sama, apakah ada perbedaan pada rata-ratanya (α= 0.05)? Buatlah:
 #### a. H0 dan H1
 
@@ -90,9 +90,7 @@ tsum.test(mean.x=3.64, s.x = 1.67, n.x = 19,
 Dengan x merupakan data dari Bandung dan y merupakan data dari Bali. Alternative = "greater" menyatakan bahwa x mempunyai mean lebih besar dari y dan var.equal = TRUE menyatakan bahwa variansi kedua sampel sama. Confidence level mengikuti pengaturan bawaan dari R yaitu 95 %.
 
 Dimana didapatkan output
-
-![3bhisto](https://user-images.githubusercontent.com/90272678/195279325-f1440a3f-1aed-4ba2-8530-26ff3666b6f7.png)
-![3bsummary_value](https://user-images.githubusercontent.com/90272678/195279374-87252ce3-9d66-44fd-860e-4ca1168479a3.png)
+![3b](https://user-images.githubusercontent.com/90272678/207409200-9c5eee5b-dfa0-4dcb-bc4d-08d737e325ce.png)
 
 #### c. Lakukan Uji Statistik (df=2)
 
@@ -105,8 +103,7 @@ plotDist(dist = 't', df = 2)
 ```
 
 Didapatkan output sebagai berikut,
-
-FOTOOOOOOOOOOOOOOOOOOOOOOOOO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+![3c](https://user-images.githubusercontent.com/90272678/207409131-dc97ed3f-685c-4f55-93aa-eb2182fecee1.png)
 
 #### d. Nilai Kritikal
 
@@ -140,7 +137,7 @@ Dimana didapatkan output
 Dengan diketahui data maka akan kita masukan data yang ada kemudian dilakukan grouping beserta dengan rumus untuk melakukan gambaran plot yang diinginkan
 
 ```R
-datano4 <- read.table("data_4.txt", h = T)
+datano4 <- read.table("C:/Users/ASUS/Desktop/data_4.txt", h = T)
 attach(datano4)
 names(datano4)
 
@@ -153,16 +150,18 @@ Group1 <- subset(datano4, Group == "Kucing Oren")
 Group2 <- subset(datano4, Group == "Kucing Hitam")
 Group3 <- subset(datano4, Group == "Kucing Putih")
 
-qqnorm(Group1$Length)
+#tampilan 2x2
+par(mfrow=c(2,2))
+
+qqnorm(Group1$Length, Main = "Group1")
 qqline(Group1$Length)
 
-qqnorm(Group2$Length)
+qqnorm(Group2$Length, Main = "Group2")
 qqline(Group2$Length)
 
-qqnorm(Group3$Length)
+qqnorm(Group3$Length, Main = "Group3")
 qqline(Group3$Length)
 ```
-Dengan keterangan, `x` adalah data vektor, dan `v` adalah *degree of freedom* 
 
 Dimana didapatkan output
 
@@ -177,13 +176,13 @@ bartlett.test(Length ~ Group, data = datano4)
 Untuk mendapatkan homogeneity of variances maka dipakai fungsi di atas dengan paramerter dari data
 
 Dimana didapatkan output
+![4b](https://user-images.githubusercontent.com/90272678/207410712-54971231-d83f-4db9-8fee-a79cbdd0807a.png)
 
-![4b](https://user-images.githubusercontent.com/90272678/195287987-3c0ddea2-b8fd-4718-9bb4-742464042c24.png)
 
 #### c. Untuk uji ANOVA, buatlah model linier dengan Panjang versus Grup dan beri nama model tersebut model 1.
 
 ```R
-model1 = lm(Length ~ Group, data = data4)
+model1 = lm(Length ~ Group, data = datano4)
 anova(model1)
 ```
 
@@ -204,7 +203,7 @@ TukeyHSD(aov(model1))
 Dari TukeyHSD, didapatkan hasil bahwa perbedaan panjang kucing yang signifikan adalah pada kucing hitam yang terlihat pada hasil memberikan diff cukup besar
 
 Berikut outputnya :
-FOTOOOOOO !!!!!!!!
+![4e](https://user-images.githubusercontent.com/90272678/207411152-9802d9df-aad1-4d09-96da-538403dc0e11.png)
 
 #### f. Visualisasikan data dengan ggplot2
 
@@ -217,7 +216,7 @@ ggplot(datano4, aes(x = Group, y = Length)) + geom_boxplot(fill = "blue", colour
 ```
 
 Berikut Outputnya
-FOTOOOOOOOOOOO !!!!
+![4f](https://user-images.githubusercontent.com/90272678/207411372-8d9aac23-f1e0-419f-9ca0-abb5f6a74649.png)
 
 ## 5. (Anova dua arah) 
 ## Data yang digunakan merupakan hasil eksperimen yang dilakukan untuk mengetahui pengaruh suhu operasi (100˚C, 125˚C dan 150˚C) dan tiga jenis kaca pelat muka (A, B dan C) pada keluaran cahaya tabung osiloskop. Percobaan dilakukan sebanyak 27 kali dan didapat data sebagai berikut: Data Hasil Eksperimen. Dengan data tersebut: 
@@ -242,8 +241,9 @@ qplot(x = Temp, y = Light, geom = "point", data = GTL) + facet_grid(.~Glass, lab
 Dengan keterangan, `lambda` adalah *rate* dari distribusi exponential, dan `rexp()` digunakan untuk men-*generate* data random
 
 Dimana didapatkan output
-
-![5a](https://user-images.githubusercontent.com/90272678/195295311-9592d375-14b6-49f5-a87c-e504b2e8e0fc.png)
+![5a1](https://user-images.githubusercontent.com/90272678/207412105-a2341ccc-a444-43e5-8575-de450a462527.png)
+![5a2](https://user-images.githubusercontent.com/90272678/207412108-86af98cc-3e11-4434-97c6-f356b5f7ab39.png)
+![5a3](https://user-images.githubusercontent.com/90272678/207412242-00cc8b50-8dde-476b-8b72-744275f84148.png)
 
 #### b. Lakukan uji ANOVA dua arah untuk 2 faktor
 
@@ -258,8 +258,7 @@ summary(anova)
 Dilakukan pengujian anova dengan menggunakan rumus diatas dan didapatkan output terkait
 
 Berikut output di atas
-
-![5b](https://user-images.githubusercontent.com/90272678/195297501-638ada5d-6429-4476-9ffa-6c0413ffc248.png)
+![5b](https://user-images.githubusercontent.com/90272678/207412633-7c0838e0-c267-43af-88c0-6815bd951431.png)
 
 #### c. Tampilkan tabel dengan mean dan standar deviasi keluaran cahaya untuk setiap perlakuan (kombinasi kaca pelat muka dan suhu operasi)
 
@@ -272,8 +271,7 @@ print(data_summary)
 Berikut tabel dari mean dan standar deviasi keluaran cahaya untuk setiap perlakuan
 
 Dimana didapatkan output
-
-![5c](https://user-images.githubusercontent.com/90272678/195298673-a9391a4e-0bc7-45bf-a1a4-2fb650ad0b53.png)
+![5c](https://user-images.githubusercontent.com/90272678/207413395-ba390a89-0b0f-4a83-b232-4b346a841d20.png)
 
 #### d. Lakukan uji Turkey
 
@@ -283,7 +281,8 @@ print(tukey)
 ```
 
 Didapatkan Output 
-FOTOOOOO~~~~
+![5d1](https://user-images.githubusercontent.com/90272678/207413482-295970df-f91c-483c-8e29-8966a1254a8f.png)
+![5d2](https://user-images.githubusercontent.com/90272678/207413421-7dbaeb79-e321-47f3-b497-8f76e2df876f.png)
 
 #### e. Gunakan compact letter display untuk menunjukkan perbedaan signifikan antara uji Anova dan uji Tukey
 
@@ -298,6 +297,6 @@ print(data_summary)
 write.csv("GTL_summary.csv")
 ```
 Dimana didapatkan output
-FOTOOOOO
+![5e](https://user-images.githubusercontent.com/90272678/207413526-2005b378-e63b-4fbd-a8ef-9f82fb023c79.png)
 
 # Sekian, Terima Kasih
