@@ -181,8 +181,8 @@ bartlett.test(Length ~ Group, data = datano4)
 Untuk mendapatkan homogeneity of variances maka dipakai fungsi di atas dengan paramerter dari data
 
 Dimana didapatkan output
-![4b](https://user-images.githubusercontent.com/90272678/207410712-54971231-d83f-4db9-8fee-a79cbdd0807a.png)
 
+![4b](https://user-images.githubusercontent.com/90272678/207410712-54971231-d83f-4db9-8fee-a79cbdd0807a.png)
 
 #### c. Untuk uji ANOVA, buatlah model linier dengan Panjang versus Grup dan beri nama model tersebut model 1.
 
@@ -208,6 +208,7 @@ TukeyHSD(aov(model1))
 Dari TukeyHSD, didapatkan hasil bahwa perbedaan panjang kucing yang signifikan adalah pada kucing hitam yang terlihat pada hasil memberikan diff cukup besar
 
 Berikut outputnya :
+
 ![4e](https://user-images.githubusercontent.com/90272678/207411152-9802d9df-aad1-4d09-96da-538403dc0e11.png)
 
 #### f. Visualisasikan data dengan ggplot2
@@ -221,6 +222,7 @@ ggplot(datano4, aes(x = Group, y = Length)) + geom_boxplot(fill = "blue", colour
 ```
 
 Berikut Outputnya
+
 ![4f](https://user-images.githubusercontent.com/90272678/207411372-8d9aac23-f1e0-419f-9ca0-abb5f6a74649.png)
 
 ## 5. (Anova dua arah) 
@@ -236,7 +238,7 @@ library(ggplot2)
 library(multcompView)
 library(dplyr)
 
-GTL <- read_csv("data_5.csv")
+GTL <- read_csv("C:/Users/ASUS/Downloads/data_5.csv")
 head(GTL)
 
 str(GTL)
@@ -246,6 +248,7 @@ qplot(x = Temp, y = Light, geom = "point", data = GTL) + facet_grid(.~Glass, lab
 Dengan keterangan, `lambda` adalah *rate* dari distribusi exponential, dan `rexp()` digunakan untuk men-*generate* data random
 
 Dimana didapatkan output
+
 ![5a1](https://user-images.githubusercontent.com/90272678/207412105-a2341ccc-a444-43e5-8575-de450a462527.png)
 ![5a2](https://user-images.githubusercontent.com/90272678/207412108-86af98cc-3e11-4434-97c6-f356b5f7ab39.png)
 ![5a3](https://user-images.githubusercontent.com/90272678/207412242-00cc8b50-8dde-476b-8b72-744275f84148.png)
@@ -263,6 +266,7 @@ summary(anova)
 Dilakukan pengujian anova dengan menggunakan rumus diatas dan didapatkan output terkait
 
 Berikut output di atas
+
 ![5b](https://user-images.githubusercontent.com/90272678/207412633-7c0838e0-c267-43af-88c0-6815bd951431.png)
 
 #### c. Tampilkan tabel dengan mean dan standar deviasi keluaran cahaya untuk setiap perlakuan (kombinasi kaca pelat muka dan suhu operasi)
@@ -276,6 +280,7 @@ print(data_summary)
 Berikut tabel dari mean dan standar deviasi keluaran cahaya untuk setiap perlakuan
 
 Dimana didapatkan output
+
 ![5c](https://user-images.githubusercontent.com/90272678/207413395-ba390a89-0b0f-4a83-b232-4b346a841d20.png)
 
 #### d. Lakukan uji Turkey
@@ -286,6 +291,7 @@ print(tukey)
 ```
 
 Didapatkan Output 
+
 ![5d1](https://user-images.githubusercontent.com/90272678/207413482-295970df-f91c-483c-8e29-8966a1254a8f.png)
 ![5d2](https://user-images.githubusercontent.com/90272678/207413421-7dbaeb79-e321-47f3-b497-8f76e2df876f.png)
 
@@ -302,6 +308,7 @@ print(data_summary)
 write.csv("GTL_summary.csv")
 ```
 Dimana didapatkan output
+
 ![5e](https://user-images.githubusercontent.com/90272678/207413526-2005b378-e63b-4fbd-a8ef-9f82fb023c79.png)
 
 # Sekian, Terima Kasih
