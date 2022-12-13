@@ -22,8 +22,7 @@ sd(difference)
 Dengan ditemukannya selisih dari data pengamatan tersebut, maka akan bisa digunakan nantinya untuk mendapatkan standar deviasi yang diinginkan
 
 Dimana didapatkan output terkait untuk standar deviasi
-
-![1a](https://user-images.githubusercontent.com/90272678/195225335-563ac305-198b-4df5-946f-29ddb157bf71.png)
+![1a](https://user-images.githubusercontent.com/90272678/207394488-468f557c-7781-437c-af35-183b16cfdd80.png)
 
 #### b. carilah nilai t (p-value)
 
@@ -33,8 +32,7 @@ t.test(after, before, paired = TRUE )
 Dimana dalam rumus ini after dan before merupakan data yang diberi oleh soal. Karena parameter masukan merupakan data kelompok maka data akan dipasangkan satu per satu sehingga paired akan di set menjadi true
 
 Dimana didapatkan output 
-
-![1b](https://user-images.githubusercontent.com/90272678/195226962-93d29987-24a4-4348-8cc3-7aa162694f45.png)
+![1b](https://user-images.githubusercontent.com/90272678/207394565-32b2b868-b9a7-423f-a755-3769b12290fd.png)
 
 #### c. tentukanlah apakah terdapat pengaruh yang signifikan secara statistika dalam hal kadar saturasi oksigen , sebelum dan sesudah melakukan aktivitas 𝐴 jika diketahui tingkat signifikansi 𝛼 = 5% serta H0 : “tidak ada pengaruh yang signifikan secara statistika dalam hal kadar saturasi oksigen , sebelum dan sesudah melakukan aktivitas 𝐴”
 
@@ -51,8 +49,7 @@ library(BSDA)
 tsum.test(mean.x = 23500, s.x = 3900, n.x = 100)
 ```
 Didapatkan hasil sebagai berikut 
-
-FOTOOOOOOOO !!!!!
+![2](https://user-images.githubusercontent.com/90272678/207394842-c90c9ad2-6328-4791-b471-ce40b2f1a41f.png)
 
 #### a. Apakah Anda setuju dengan klaim tersebut?
 
@@ -65,10 +62,8 @@ Dari perhitungan yang dilakukan melalui rumus di bawah ini
 ```R
 tsum.test(mean.x = 23500, s.x = 3900, n.x = 100)
 ```
-
-###### Didapatkan bahwa rata-rata jarak tempuh mobil per tahun berada dalam selang 22726,16 sampai 24273,84 km, dengan pengaturan bawaan dari R yang memberikan confidence level 95%. Didapatkan data juga bahwa t = 60.256 dengan p-value < 2.2e-16.
-
-###### Sehingga dapat kita ambil kesimpulan bahwa rata-rata jarak tempuh mobil berada pada selang 22726,16 sampai 24273,84 km sehingga bisa dikatakan ada cukup bukti yang mendukung klaim terkait yaitu bahwa rata-rata mobil dikemudikan adalah lebih dari 20000 kilometer per tahun.
+Didapatkan bahwa rata-rata jarak tempuh mobil per tahun berada dalam selang 22726,16 sampai 24273,84 km, dengan pengaturan bawaan dari R yang memberikan confidence level 95%. Didapatkan data juga bahwa t = 60.256 dengan p-value < 2.2e-16.
+Sehingga dapat kita ambil kesimpulan bahwa rata-rata jarak tempuh mobil berada pada selang 22726,16 sampai 24273,84 km sehingga bisa dikatakan ada cukup bukti yang mendukung klaim terkait yaitu bahwa rata-rata mobil dikemudikan adalah lebih dari 20000 kilometer per tahun.
 
 #### c Buatlah kesimpulan berdasarkan P-Value yang dihasilkan!
 
