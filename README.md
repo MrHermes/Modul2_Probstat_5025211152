@@ -245,8 +245,6 @@ str(GTL)
 
 qplot(x = Temp, y = Light, geom = "point", data = GTL) + facet_grid(.~Glass, labeller = label_both)
 ```
-Dengan keterangan, `lambda` adalah *rate* dari distribusi exponential, dan `rexp()` digunakan untuk men-*generate* data random
-
 Dimana didapatkan output
 
 ![5a1](https://user-images.githubusercontent.com/90272678/207412105-a2341ccc-a444-43e5-8575-de450a462527.png)
@@ -293,6 +291,7 @@ print(tukey)
 Didapatkan Output 
 
 ![5d1](https://user-images.githubusercontent.com/90272678/207413482-295970df-f91c-483c-8e29-8966a1254a8f.png)
+
 ![5d2](https://user-images.githubusercontent.com/90272678/207413421-7dbaeb79-e321-47f3-b497-8f76e2df876f.png)
 
 #### e. Gunakan compact letter display untuk menunjukkan perbedaan signifikan antara uji Anova dan uji Tukey
