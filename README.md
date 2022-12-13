@@ -7,23 +7,28 @@ FOTOOOOOOOOOOOOOOOOOOOOOOOO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 #### a. Carilah Standar Deviasi dari data selisih pasangan pengamatan tabel diatas
 
-```R
-p = 0.20
-n = 3
-dgeom (x = n, prob = p)
-```
-Dengan keterangan, `p` adalah probabilitas keberhasilan dan `x` adalah jumlah kegagalan sebelum menemui sukses
+Dengan data selisih pasangan pengamatan tabel, maka akan didapatkan standar deviasi sesuai pengelompokannya 
 
-Dimana didapatkan output 
+```R
+before <- c(78, 75, 67, 77, 70, 72, 78, 74, 77)
+after <- c(100, 95, 70, 90, 90, 90, 89, 90, 100)
+
+difference <- after - before
+std(difference)
+```
+
+Dengan ditemukannya selisih dari data pengamatan tersebut, maka akan bisa digunakan nantinya untuk mendapatkan standar deviasi yang diinginkan
+
+Dimana didapatkan output terkait untuk standar deviasi
 
 ![1a](https://user-images.githubusercontent.com/90272678/195225335-563ac305-198b-4df5-946f-29ddb157bf71.png)
 
 #### b. carilah nilai t (p-value)
 
 ```R
-mean(rgeom(n = 10000, prob = p) == 3)
+t.test(after, before, paired = TRUE )
 ```
-Dengan keterangan, `p` adalah probabilitas keberhasilan dan `n` adalah jumlah data random yang di bangkitkan
+Dimana dalam rumus ini after dan before merupakan data yang diberi oleh soal. Karena parameter masukan merupakan data kelompok maka data akan dipasangkan satu per satu sehingga paired akan di set menjadi true
 
 Dimana didapatkan output 
 
@@ -31,50 +36,9 @@ Dimana didapatkan output
 
 #### c. tentukanlah apakah terdapat pengaruh yang signifikan secara statistika dalam hal kadar saturasi oksigen , sebelum dan sesudah melakukan aktivitas 𝐴 jika diketahui tingkat signifikansi 𝛼 = 5% serta H0 : “tidak ada pengaruh yang signifikan secara statistika dalam hal kadar saturasi oksigen , sebelum dan sesudah melakukan aktivitas 𝐴”
 
-###### Nilai yang didapatkan dari nomor 1a adalah 0.1024, disisi lain, pada 1b didapatkan nilai yang tidak jauh beda dengan 1a, sehingga dapat disimpulkan bahwa perhitungan pada 1a mendekati hasil mean data random distribusi geometrik pada 1b
+###### Berdasarkan hasil yang telah didapatkan bahwa nilai dari uji t(p-value) yang mana adalah 6.003e-05 memiliki nilai yang lebih kecil dari significant level 𝛼 = 0.05, sehingga dapat ditarik keputusan yaitu hipotesis nol ditolak dan dapat ditarik kesimpulan bahwa ada bukti bahwa hipotesis alternatif mempunyai pengaruhnya
 
-#### d. Histogram Distribusi Geometrik , Peluang X = 3 gagal Sebelum Sukses Pertama
-
-```R
-library(dplyr)
-library(ggplot2)
-
-data.frame(x = 0:10, prob = dgeom(x = 0:10, prob = p)) %>%
-  mutate(Failures = ifelse(x == 3, 3, "other")) %>%
-  ggplot(aes(x = factor(x), y = prob, fill = Failures)) +
-  geom_col() +
-  geom_text(
-    aes(label = round(prob,2), y = prob + 0.01),
-    position = position_dodge(0.9),
-    size = 3,
-    vjust = 0
-  ) +
-  labs(title = "Histogram Distribusi Geometrik , Peluang gagal Sebelum Sukses Pertama, X = 3",
-       x = "Jumlah gagal sebelum berhasil pertama kali",
-       y = "Probabilitas") +
-  scale_fill_brewer(palette = "Pastel1")
-
-```
-Digunakan ggplot untuk merepresentasikan data.frame (kumpulan data sesuai dengan kasus yang diminta) kemudian akan di *highlight* pada kasus terkait
-
-Dimana didapatkan output 
-
-![1d](https://user-images.githubusercontent.com/90272678/195267750-6d9ac5cc-c542-4c0a-af1c-3b3094da6a64.png)
-
-#### e. Histogram Distribusi Geometrik , Peluang X = 3 gagal Sebelum Sukses Pertama
-
-```R
-#nilai rataan
-nilai_rataan <- 1/p; nilai_rataan
-
-#nilai varian
-nilai_varian <- (1-p)/(p^2); nilai_varian
-```
-Dengan keterangan, `p` adalah probabilitas keberhasilan
-
-Dimana didapatkan output 
-
-![1e](https://user-images.githubusercontent.com/90272678/195229548-c7cf0a42-fdb2-45cc-afec-ab6718cd14f9.png)
+###### Sehingga dapat dikonklusi bahwa terdapat bukti pengaruh yang signifikan dalam hal kadar saturasi oksigen, sebelum dan sesudah melakukan aktivitas 𝐴 jika diketahui significant level 𝛼 = 0.05 
 
 ## 2. (Hipotesa 1 sampel)
 ### Diketahui bahwa mobil dikemudikan rata-rata lebih dari 20.000 kilometer per tahun. Untuk menguji klaim ini, 100 pemilik mobil yang dipilih secara acak diminta untuk mencatat jarak yang mereka tempuh. Jika sampel acak menunjukkan rata-rata 23.500 kilometer dan standar deviasi 3900 kilometer. (Kerjakan menggunakan library seperti referensi pada modul). 
