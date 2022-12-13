@@ -22,6 +22,7 @@ sd(difference)
 Dengan ditemukannya selisih dari data pengamatan tersebut, maka akan bisa digunakan nantinya untuk mendapatkan standar deviasi yang diinginkan
 
 Dimana didapatkan output terkait untuk standar deviasi
+
 ![1a](https://user-images.githubusercontent.com/90272678/207394488-468f557c-7781-437c-af35-183b16cfdd80.png)
 
 #### b. carilah nilai t (p-value)
@@ -32,6 +33,7 @@ t.test(after, before, paired = TRUE )
 Dimana dalam rumus ini after dan before merupakan data yang diberi oleh soal. Karena parameter masukan merupakan data kelompok maka data akan dipasangkan satu per satu sehingga paired akan di set menjadi true
 
 Dimana didapatkan output 
+
 ![1b](https://user-images.githubusercontent.com/90272678/207394565-32b2b868-b9a7-423f-a755-3769b12290fd.png)
 
 #### c. tentukanlah apakah terdapat pengaruh yang signifikan secara statistika dalam hal kadar saturasi oksigen , sebelum dan sesudah melakukan aktivitas 𝐴 jika diketahui tingkat signifikansi 𝛼 = 5% serta H0 : “tidak ada pengaruh yang signifikan secara statistika dalam hal kadar saturasi oksigen , sebelum dan sesudah melakukan aktivitas 𝐴”
@@ -49,6 +51,7 @@ library(BSDA)
 tsum.test(mean.x = 23500, s.x = 3900, n.x = 100)
 ```
 Didapatkan hasil sebagai berikut 
+
 ![2](https://user-images.githubusercontent.com/90272678/207394842-c90c9ad2-6328-4791-b471-ce40b2f1a41f.png)
 
 #### a. Apakah Anda setuju dengan klaim tersebut?
@@ -90,6 +93,7 @@ tsum.test(mean.x=3.64, s.x = 1.67, n.x = 19,
 Dengan x merupakan data dari Bandung dan y merupakan data dari Bali. Alternative = "greater" menyatakan bahwa x mempunyai mean lebih besar dari y dan var.equal = TRUE menyatakan bahwa variansi kedua sampel sama. Confidence level mengikuti pengaturan bawaan dari R yaitu 95 %.
 
 Dimana didapatkan output
+
 ![3b](https://user-images.githubusercontent.com/90272678/207409200-9c5eee5b-dfa0-4dcb-bc4d-08d737e325ce.png)
 
 #### c. Lakukan Uji Statistik (df=2)
@@ -103,6 +107,7 @@ plotDist(dist = 't', df = 2)
 ```
 
 Didapatkan output sebagai berikut,
+
 ![3c](https://user-images.githubusercontent.com/90272678/207409131-dc97ed3f-685c-4f55-93aa-eb2182fecee1.png)
 
 #### d. Nilai Kritikal
@@ -114,7 +119,7 @@ Dengan keterangan, p adalah α yang diberikan, dan df (degrees of freedom) mengi
 
 Dimana didapatkan output
 
-![3d](https://user-images.githubusercontent.com/90272678/195280789-ad356d21-c76e-4df9-a65d-58c2a7ff248c.png)
+![3d](https://user-images.githubusercontent.com/90272678/207414431-42885e9f-76a9-451c-94f5-b77ad99e96f6.png)
 
 #### e. Keputusan
 
@@ -165,7 +170,7 @@ qqline(Group3$Length)
 
 Dimana didapatkan output
 
-![4a](https://user-images.githubusercontent.com/90272678/195287949-e90a1370-a656-4b0b-aeba-78da8fb9b876.png)
+![4a](https://user-images.githubusercontent.com/90272678/207414631-111d7ff9-3b93-4505-84f6-9d0b5ecd8283.png)
 
 #### b. carilah atau periksalah Homogeneity of variances nya , Berapa nilai p yang didapatkan? , Apa hipotesis dan kesimpulan yang dapat diambil ?
 
@@ -188,7 +193,7 @@ anova(model1)
 
 Dimana didapatkan output 
 
-![4c](https://user-images.githubusercontent.com/90272678/195289562-5bb48dc1-1d74-47de-9456-a7f423deb781.png)
+![4c](https://user-images.githubusercontent.com/90272678/207414695-bb1af30c-fbbf-492b-a7b3-dcd33cc9d380.png)
 
 #### d. Dari Hasil Poin C , Berapakah nilai-p ? ,  Apa yang dapat Anda simpulkan dari H0?
 
