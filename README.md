@@ -45,97 +45,54 @@ Dimana didapatkan output
 ## 2. (Hipotesa 1 sampel)
 ### Diketahui bahwa mobil dikemudikan rata-rata lebih dari 20.000 kilometer per tahun. Untuk menguji klaim ini, 100 pemilik mobil yang dipilih secara acak diminta untuk mencatat jarak yang mereka tempuh. Jika sampel acak menunjukkan rata-rata 23.500 kilometer dan standar deviasi 3900 kilometer. (Kerjakan menggunakan library seperti referensi pada modul). 
 
+```R
+install.packages("BSDA")
+library(BSDA)
+tsum.test(mean.x = 23500, s.x = 3900, n.x = 100)
+```
+Didapatkan hasil sebagai berikut 
+
+FOTOOOOOOOO !!!!!
+
 #### a. Apakah Anda setuju dengan klaim tersebut?
 
-```R
-n = 20
-p = 0.2
-x = 4
-dbinom (x, n, p)
-```
-Dengan keterangan, `n` adalah jumlah pasien yang menderita Covid19, `p` adalah probabilitas keberhasilan, dan `x` adalah jumlah pasien yang sembuh 
-
-Dimana didapatkan output 
-
-![2a](https://user-images.githubusercontent.com/90272678/195267949-5619acbd-d206-4661-be3c-64b1d5bebb19.png)
+###### Setuju dengan klaim terkait 
 
 #### b. Jelaskan maksud dari output yang dihasilkan!
 
+Dari perhitungan yang dilakukan melalui rumus di bawah ini
+
 ```R
-library(dplyr)
-library(ggplot2)
-
-data.frame(x = 0:20, prob = dbinom(x = 0:20, size = 20, prob = 0.2)) %>%
-  mutate(Sembuh = ifelse(x == 4, 4, "other")) %>%
-  ggplot(aes(x = factor(x), y = prob, fill = Sembuh)) +
-  theme_minimal()+
-  geom_col() +
-  geom_text(
-    aes(label = round(prob,2), y = prob + 0.01),
-    position = position_dodge(0.9),
-    size = 3,
-    vjust = 0) +
-  labs(title = "Histogram Distribusi Binomial Probabilitas dari X=4 Sembuh dari 20",
-       x = "Sembuh (x)",
-       y = "Probabilitas")+
-  scale_fill_brewer(palette = "Pastel1")
+tsum.test(mean.x = 23500, s.x = 3900, n.x = 100)
 ```
-Digunakan ggplot untuk merepresentasikan data.frame (kumpulan data sesuai dengan kasus yang diminta) kemudian akan di *highlight* pada kasus terkait
 
-Dimana didapatkan output
+###### Didapatkan bahwa rata-rata jarak tempuh mobil per tahun berada dalam selang 22726,16 sampai 24273,84 km, dengan pengaturan bawaan dari R yang memberikan confidence level 95%. Didapatkan data juga bahwa t = 60.256 dengan p-value < 2.2e-16.
 
-![2b](https://user-images.githubusercontent.com/90272678/195273606-9ccd8659-5c87-42de-beaa-556c6914ae83.png)
+###### Sehingga dapat kita ambil kesimpulan bahwa rata-rata jarak tempuh mobil berada pada selang 22726,16 sampai 24273,84 km sehingga bisa dikatakan ada cukup bukti yang mendukung klaim terkait yaitu bahwa rata-rata mobil dikemudikan adalah lebih dari 20000 kilometer per tahun.
 
 #### c Buatlah kesimpulan berdasarkan P-Value yang dihasilkan!
 
-```R
-#nilai rataan
-nilai_rataan <- n*p; nilai_rataan
-
-#nilai varian
-nilai_varian <- n*p*(1-p); nilai_varian
-
-```
-Dengan keterangan, `n` adalah jumlah pasien yang menderita Covid19, `p` adalah probabilitas keberhasilan
-
-Dimana didapatkan output
-
-![2c](https://user-images.githubusercontent.com/90272678/195274223-8dd904f8-92be-41e8-8848-8b21dfbbdf07.png)
+###### Dari nilai p-value yang ada dan significant level 𝛼 = 0.05 (didapatkan dari 100 % - confidence level ) dapat diputuskan bahwa hipotesis nol ditolak. Setelah itu, dapat disimpulkan bahwa ada cukup bukti yang mendukung klaim bahwa rata-rata mobil dikemudikan adalah lebih dari 20000 kilometer per tahun. 
 
 ## 3. (Hipotesa 2 sampel) Diketahui perusahaan memiliki seorang data analyst ingin memecahkan permasalahan pengambilan keputusan dalam perusahaan tersebut. Selanjutnya didapatkanlah data berikut dari perusahaan saham tersebut.
+FOTOOOOOOOOOOOOOOOOOOOO !!!!!!!!!!!!!!
+## Dari data diatas berilah keputusan serta kesimpulan yang didapatkan dari hasil diatas. Asumsikan nilai variancenya sama, apakah ada perbedaan pada rata-ratanya (α= 0.05)? Buatlah:
 #### a. H0 dan H1
 
-```R
-lambda = 4.5
-x = 6
-dpois(x, lambda)
-```
-Dengan keterangan, `lambda` adalah mean atau rata-rata historis, `x` adalah jumlah keberhasilan (bayi lahir di rumah sakit) pada interval tertentu (besok)
+###### H0 : μ1 = μ2 
+###### H1 : μ1 ≠ μ2
 
-Dimana didapatkan output
-
-![3a](https://user-images.githubusercontent.com/90272678/195275359-2200d25e-d954-47cb-881c-10027d676c6a.png)
+Dengan μ1 adalah rata-rata saham di Bandung dan μ2 adalah rata-rata saham di Bali
 
 #### b. Hitung Sampel Statistik
 
 ```R
-random_data <- data.frame('data' = rpois(365, 4.5))
-random_data %>% ggplot() +
-  geom_histogram(aes(x = data,
-                     y = stat(count / sum(count)),
-                     fill = data == 6),
-                 binwidth = 1,
-                 color = 'black',) +
-  scale_x_continuous(breaks = 0:10) + 
-  labs(x = 'Jumlah bayi yang lahir per periode',
-       y = 'Proporsi',
-       title = 'Histogram Kelahiran 6 Bayi di Rumah Sakit Selama Setahun') +
-  scale_fill_brewer(palette = "Pastel1")
-
-random_data %>% dplyr::summarize(six_babies = sum(random_data$data == 6) / n())
+tsum.test(mean.x=3.64, s.x = 1.67, n.x = 19, 
+          mean.y =2.79 , s.y = 1.32, n.y = 27, 
+          alternative = "greater", var.equal = TRUE)
 ```
-Digunakan `ggplot` untuk merepresentasikan `data.frame` (kumpulan data sesuai dengan kasus yang diminta) kemudian akan di *highlight* pada kasus terkait
-`summarize` berfungsi untuk merangkum data menjadi satu data 
+
+Dengan x merupakan data dari Bandung dan y merupakan data dari Bali. Alternative = "greater" menyatakan bahwa x mempunyai mean lebih besar dari y dan var.equal = TRUE menyatakan bahwa variansi kedua sampel sama. Confidence level mengikuti pengaturan bawaan dari R yaitu 95 %.
 
 Dimana didapatkan output
 
@@ -144,23 +101,36 @@ Dimana didapatkan output
 
 #### c. Lakukan Uji Statistik (df=2)
 
+Digunakan distribusi t yang memenuhi informasi yang diberikan, lalu kita gambarkan dengan plotDisc() untuk uji statistik dengan derajat bebas 2
+
+```R
+install.packages("mosaic")
+library(mosaic)
+plotDist(dist = 't', df = 2, col = "red")
+```
+
+Didapatkan output sebagai berikut,
+
+FOTOOOOOOOOOOOOOOOOOOOOOOOOO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 #### d. Nilai Kritikal
 
 ```R
-#nilai rataan
-nilai_rataan <- lambda; nilai_rataan
-
-#nilai varian
-nilai_varian <- lambda; nilai_varian
+qchisq(p = 0.05, df = 2, lower.tail = FALSE)
 ```
-Dengan keterangan, `lambda` adalah mean atau rata-rata berdasarkan historis
+Dengan keterangan, p adalah α yang diberikan, dan df (degrees of freedom) mengikuti informasi yang diberikan, serta lower.tail = FALSE akan memberikan nilai di sisi kanan dari nilai yang dikehendaki
+
 Dimana didapatkan output
 
 ![3d](https://user-images.githubusercontent.com/90272678/195280789-ad356d21-c76e-4df9-a65d-58c2a7ff248c.png)
 
 #### e. Keputusan
 
+###### Diambil keputusan yaitu H0 tidak tolak 
+
 #### f. Kesimpulan
+
+###### Diambil kesimpulan yaitu ada bukti yang cukup untuk mengatakan bahwa μ1 ≠ μ2
 
 ## 4. (Anova satu arah) Seorang Peneliti sedang meneliti spesies dari kucing di ITS . Dalam penelitiannya ia mengumpulkan data  tiga spesies kucing yaitu kucing oren, kucing hitam dan kucing putih dengan panjangnya masing-masing. 
 ### Jika : 
